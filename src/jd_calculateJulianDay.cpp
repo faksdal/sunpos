@@ -36,7 +36,7 @@ void julianday::jd_calculateJulianDay(void)
 	//
 	if(!ts_getGregorianDate()){
 		if(jd_verbose)
-			std::cout	<< "Perform Meeus calculations based on Julian date " << (int)ts_getDay()
+			std::cout	<< "Performs Meeus calculations based on Julian date " << (int)ts_getDay()
 						<< "/" << ts_getMonth()
 						<< "-" << ts_getYear() << std::endl;
 
@@ -45,7 +45,7 @@ void julianday::jd_calculateJulianDay(void)
 	}
 	else if(ts_getGregorianDate()){
 		if(jd_verbose)
-			std::cout	<< "Perform Meeus calculations based on Gregorian date " << (int)ts_getDay()
+			std::cout	<< "Performs Meeus calculations based on Gregorian date " << (int)ts_getDay()
 						<< "/" << ts_getMonth()
 						<< "-" << ts_getYear() << std::endl;
 
