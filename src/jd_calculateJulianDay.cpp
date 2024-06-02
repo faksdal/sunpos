@@ -21,16 +21,16 @@ void julianday::jd_calculateJulianDay(void)
 	Y = ts_getYear();
 	M = ts_getMonth();
 
-	std::cout << "Y: " << Y << std::endl;
-	std::cout << "M: " << M << std::endl;
+	//std::cout << "Y: " << Y << std::endl;
+	//std::cout << "M: " << M << std::endl;
 
 	if((M == 1) || (M == 2) ){
 		Y--;
 		M += 12;
 	}
 
-	std::cout << "Y: " << Y << std::endl;
-	std::cout << "M: " << M << std::endl;
+	//std::cout << "Y: " << Y << std::endl;
+	//std::cout << "M: " << M << std::endl;
 
 	//	Different algorithms based on which calendar is used, Gregorian or Julian
 	//
@@ -53,8 +53,8 @@ void julianday::jd_calculateJulianDay(void)
 		A	=	floor(Y/100);
 		B	=	2 - A + floor(A/4);
 		//B	=	2 - (floor(Y/100.)) + floor((floor(Y/100.))/4.);
-		std::cout << "A: " << A << std::endl;
-		std::cout << "B: " << B << std::endl;
+		//std::cout << "A: " << A << std::endl;
+		//std::cout << "B: " << B << std::endl;
 
 	}
 
@@ -64,15 +64,15 @@ void julianday::jd_calculateJulianDay(void)
 	//
 	//	We calculate first the value for JD at noon
 	//std::cout << "jd_julianDay: " << jd_julianDay << std::endl;
-	std::cout << "(short)ts_getDay(): " << (short)ts_getDay() << std::endl;
-	jd_julianDay =		floor(365.25 * (Y + 4716.))
-					+	floor(30.6001 * (M + 1.))
-					+	(short)ts_getDay() + B - 1524;
+	//std::cout << "(short)ts_getDay(): " << (short)ts_getDay() << std::endl;
+	jd_julianDay_utc =		floor(365.25 * (Y + 4716.))
+						+	floor(30.6001 * (M + 1.))
+						+	(short)ts_getDay() + B - 1524;
 	//std::cout << "jd_julianDay: " << jd_julianDay << std::endl;
 
 	//	Then we add the fraction of the day
 	//jd_julianDayFraction = jd_julianDay + ((ts_getHour() + (ts_getMinute()/60.) + (ts_getSecond()/3600.))/24.);
-	jd_julianDate = jd_julianDay - .5 + ((ts_getHour() + (ts_getMinute()/60.) + (ts_getSecond()/3600.))/24.);
+	jd_julianDate = jd_julianDay_utc - .5 + ((ts_getHour() - jd_getTz() + (ts_getMinute()/60.) + (ts_getSecond()/3600.))/24.);
 
 	// Calculate doy
 	short K;
@@ -80,12 +80,12 @@ void julianday::jd_calculateJulianDay(void)
 	jd_doy = floor( ((275 * ts_getMonth())/9) ) - K * floor(((ts_getMonth() + 9)/(12))) + ts_getDay() - 30;
 	// doy
 
-	//if(jd_verbose){
-		std::cout << std::fixed;
-		std::cout << "                  Julian Day(whole): " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_julianDay << std::endl;
-		std::cout << "              Julian Date(fraction): " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_julianDate << std::endl;
-		std::cout << "                                doy: " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_doy << std::endl;
-	//}
+	// Calculate day of week (dow) as shown in Meeus, p.65
+	// remainder = dividend % divisor;
+	jd_dow = ((long)(jd_julianDay_utc + 1.5) % 7);
+	//std::cout << "dow: " << jd_dow << std::endl;
+	// Calculate dow
+
 
 /*
 	//

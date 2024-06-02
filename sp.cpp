@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 	short	month;
 	short	hour;
 	short	minute;
+	short	tz;
 
 	float	day;
 	float	second;
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
 					{"time",	required_argument,	NULL,	't'},
 					{"verbose",	no_argument,		NULL,	'v'},
 					{"help",	no_argument,		NULL,	'h'},
-					//{"tz",		required_argument,	NULL,	1},
+					{"tz",		required_argument,	NULL,	1},
 					//{"lat",		required_argument,	NULL,	2},
 					//{"lon",		required_argument,	NULL,	3},
 					//{"dst",		required_argument,	NULL,	4},
@@ -71,6 +72,7 @@ int main(int argc, char *argv[])
 					{0, 0, 0, 0}
 	};	//End of getopt()-variables
 
+	tz = 0;
 
 	//
 	//	getopt() switch statement
@@ -79,6 +81,10 @@ int main(int argc, char *argv[])
 	//
 	while((c = getopt_long(argc, argv, shortOptions, longOptions, &optionIndex)) != -1){
 		switch(c){
+			case 1:		{
+							tz = atoi(optarg);
+							break;
+						}
 			case 'v':	{
 							verbose	= true;
 							std::cout << "Verbose..." << std::endl;
@@ -127,7 +133,9 @@ int main(int argc, char *argv[])
 
 	//timestamp *ts = new timestamp(year, month, day, hour, minute, second, verbose);
 
-	julianday *jd = new julianday(year, month, day, hour, minute, second, verbose);
+	julianday *jd = new julianday(year, month, day, hour, minute, second, tz, verbose);
+
+	jd->jd_printToScreen();
 
 	if(jd)
 		delete jd;

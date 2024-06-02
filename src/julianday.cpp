@@ -10,9 +10,11 @@
 
 
 
-julianday::julianday(int _year, short _month, double _day, short _hour, short _minute, double _second, bool _verbose) :
+julianday::julianday(int _year, short _month, double _day, short _hour, short _minute, double _second, short _tz, bool _verbose) :
            timestamp(_year, _month, _day, _hour, _minute, _second, _verbose)
 {
+	jd_tz = _tz;
+
 	jd_verbose = _verbose;
 
 	jd_FLOATWIDTH		= 25;

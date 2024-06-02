@@ -24,32 +24,47 @@ https://www.aa.quae.nl/en/reken/juliaansedag.html
 #ifndef INC_JULIANDAY_H_
 #define INC_JULIANDAY_H_
 
+#include <string>
+#include <iostream>
 #include <inttypes.h>
 #include "timestamp.h"
+
 
 
 
 class julianday : public timestamp{
 
 private:
+
+	std::string	dow_name[7] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
 	//	Precision formatters for terminal printing
 	short			jd_FLOATWIDTH, jd_FLOATPRECISION;
 
+	short			jd_tz;
+	short			jd_dow;
+
 	int				jd_doy;
 	//uint32_t		jd_julianDay;
-	double			jd_julianDay;
+	double			jd_julianDay_utc;
 
 	bool			jd_verbose;
 
 	double			jd_julianDate;
-	//double			jd_julianDayFraction;
 
-	weekdays		jd_weekday;
+
 
 	void	jd_calculateJulianDay(void);
 
+	std::string	jd_getDaySuffix(void);
+
 public:
-	julianday(int _year, short _month, double _day, short _hour, short _minute, double _second, bool _verbose);
+	julianday(int _year, short _month, double _day, short _hour, short _minute, double _second, short _tz, bool _verbose);
+
+	short jd_getTz(void) { return jd_tz; }
+	std::string	jd_getDOW(void)	{ return dow_name[long(jd_julianDay_utc + 1.5) % (7)]; }
+
+	void	jd_printToScreen(void);
 
 };
 
