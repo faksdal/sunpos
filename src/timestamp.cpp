@@ -76,6 +76,7 @@ timestamp::timestamp(int _year, short _month, double _day, short _hour, short _m
 
 	if(!ts_validDate){
 		std::cerr << "[ ERROR ] Supply a valid date!" << std::endl;
+		exit(-1);
 	}
 
 	return;
@@ -137,43 +138,46 @@ void timestamp::ts_parseDate(void)
 	else if(ts_year == 1582 && ts_month < 10){
 		ts_gregorianDate = false;
 
-		if(ts_verbose)
-			std::cout << std::endl << "Year == 1582 and month is less than 10." << std::endl;
+		//if(ts_verbose)
+			//std::cout << std::endl << "Year == 1582 and month is less than 10." << std::endl;
 	}
 	else if(ts_year < 1582){
 		ts_gregorianDate = false;
 
-		if(ts_verbose)
-			std::cout << std::endl << "Year is less than 1582." << std::endl;
+		//if(ts_verbose)
+			//std::cout << std::endl << "Year is less than 1582." << std::endl;
 	}
 
 	//calendar_types{proleptic_julian, julian, gregorian};
 
 	if(ts_gregorianDate){
 		ts_calendar_type = calendar_types::gregorian;
-
-		/*
-		if(ts_verbose)
-			std::cout << "Gregorian date" << std::endl;
-		*/
+		//std::cout << "Gregorian " << (int)ts_calendar_type << std::endl;
 	}
 
-	else if(!ts_gregorianDate && ts_year >= 4 && ts_month >= 3){
-		ts_calendar_type = calendar_types::julian;
-
-		/*
-		if(ts_verbose)
-			std::cout << "Julian date" << std::endl;
-		*/
+	else if(!ts_gregorianDate){
+		//std::cout << "ts_year: " << ts_year << std::endl;
+		if(ts_year >= -45){
+			ts_calendar_type = calendar_types::julian;
+			//std::cout << "Julian " << (int)ts_calendar_type << std::endl;
+		}
+		else if (ts_year < -45){
+			ts_calendar_type = calendar_types::proleptic_julian;
+			//std::cout << "Propleptic Julian " << (int)ts_calendar_type << std::endl;
+		}
 	}
 
-	else{
-		ts_calendar_type = calendar_types::proleptic_julian;
+	if(ts_verbose){
+		switch(ts_calendar_type){
+			case calendar_types::gregorian:			break;
+			case calendar_types::julian:			break;
+			case calendar_types::proleptic_julian:	break;
+			default:								break;
+		}
 
-		if(ts_verbose)
-			std::cout << "Proleptic julian date" << std::endl;
-	}
+		std::cout << ts_getCalendarTypeString() << std::endl;
 
+	} // switch(ts_calendar_type)
 
 }
 
@@ -183,4 +187,21 @@ void timestamp::ts_calculateWeekday(void)
 {
 	//ts_weekday = weekdays::monday;
 }
+
+
+
+std::string timestamp::ts_getCalendarTypeString(void)
+{
+	//std::cout << "ts_calendar_type: " << (int)ts_calendar_type << std::endl;
+	//std::cout << "calendar_type[0] " << calendar_type[0] << std::endl;
+	//std::cout << "calendar_type[1] " << calendar_type[1] << std::endl;
+	//std::cout << "calendar_type[2] " << calendar_type[2] << std::endl;
+
+	//std::cout << "calendar_type[(int)ts_calendar_type] " << calendar_type[(int)ts_calendar_type] << std::endl;
+	return calendar_type[(int)ts_calendar_type];
+}
+
+
+
+
 

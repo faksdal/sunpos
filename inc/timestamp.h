@@ -9,6 +9,7 @@
 class timestamp{
 
 	enum class calendar_types{proleptic_julian, julian, gregorian};
+	//std::string	calendar_type[3] = { "Proleptic Julian", "Julian", "Gregorian" };
 
 	int				ts_year;
 
@@ -27,7 +28,8 @@ class timestamp{
 	void	ts_calculateWeekday(void);
 
 protected:
-	std::string	month_name[12] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+	std::string	month_name[12]		= { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+	std::string	calendar_type[3]	= { "Proleptic Julian", "Julian", "Gregorian" };
 
 
 public:
@@ -48,10 +50,12 @@ public:
 	double	ts_getDay(void)				{return ts_day;}
 	double	ts_getSecond(void)			{return ts_second;}
 
-	std::string	ts_getMonthName(void)	{return month_name[ts_month - 1];}
-	/*************************************************************************/
+	std::string	ts_getMonthName(void)			{return month_name[ts_month - 1];}
 
 	calendar_types	ts_getCalendarType(void)	{return ts_calendar_type;}
+	/*************************************************************************/
+
+	std::string		ts_getCalendarTypeString(void);
 
 };
 

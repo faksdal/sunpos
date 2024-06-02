@@ -5,14 +5,14 @@
  *      Author: jole
  */
 
-#include "/home/jole/projects/nma/sunpos/inc/meananomaly.h"
+#include "meananomaly.h"
 
-meanAnomaly::meanAnomaly() {
+meananomaly::meananomaly() {
 	// TODO Auto-generated constructor stub
 
 }
 
-meanAnomaly::~meanAnomaly() {
+meananomaly::~meananomaly() {
 	// TODO Auto-generated destructor stub
 }
 

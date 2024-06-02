@@ -23,6 +23,10 @@ std::string julianday::jd_getDaySuffix(void)
 		case 1:		retval = "st"; break;
 		case 2:		retval = "nd"; break;
 		case 3:		retval = "rd"; break;
+		case 21:	retval = "st"; break;
+		case 22:	retval = "nd"; break;
+		case 23:	retval = "rd"; break;
+		case 31:	retval = "st"; break;
 		default:	break;
 	} //switch()
 

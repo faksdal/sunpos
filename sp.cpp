@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 							break;
 						}
 			case 'd':	{
-							std::cout << "optarg: " << optarg << std::endl;
+							//std::cout << "optarg: " << optarg << std::endl;
 							year	= atoi(optarg);
 							parseOptarg(&optarg);
 							month	= atoi(optarg);
