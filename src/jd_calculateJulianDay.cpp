@@ -16,17 +16,21 @@
 
 void julianday::jd_calculateJulianDay(void)
 {
-	int		B, M, Y;
+	int		A, B, M, Y;
 
-	M = ts_getMonth();
 	Y = ts_getYear();
+	M = ts_getMonth();
 
-
+	std::cout << "Y: " << Y << std::endl;
+	std::cout << "M: " << M << std::endl;
 
 	if((M == 1) || (M == 2) ){
-		M += 12;
 		Y--;
+		M += 12;
 	}
+
+	std::cout << "Y: " << Y << std::endl;
+	std::cout << "M: " << M << std::endl;
 
 	//	Different algorithms based on which calendar is used, Gregorian or Julian
 	//
@@ -46,9 +50,11 @@ void julianday::jd_calculateJulianDay(void)
 						<< "-" << ts_getYear() << std::endl;
 
 		//	The following algorithm is taken from Jean Meeus Astronomical Algorithms Second Edition published in 1998.
-		//	A	=	floor(JDYear/100);
-		//	int B	=	2 - A + floor(A/4);
-		B	=	2 - (floor(ts_getYear()/100.)) + floor((floor(ts_getYear()/100.))/4.);
+		A	=	floor(Y/100);
+		B	=	2 - A + floor(A/4);
+		//B	=	2 - (floor(Y/100.)) + floor((floor(Y/100.))/4.);
+		std::cout << "A: " << A << std::endl;
+		std::cout << "B: " << B << std::endl;
 
 	}
 
@@ -57,12 +63,16 @@ void julianday::jd_calculateJulianDay(void)
 	//	Second Edition published in 1998.
 	//
 	//	We calculate first the value for JD at noon
+	//std::cout << "jd_julianDay: " << jd_julianDay << std::endl;
+	std::cout << "(short)ts_getDay(): " << (short)ts_getDay() << std::endl;
 	jd_julianDay =		floor(365.25 * (Y + 4716.))
 					+	floor(30.6001 * (M + 1.))
-					+	ts_getDay() + B - 1524.5;
+					+	(short)ts_getDay() + B - 1524;
+	//std::cout << "jd_julianDay: " << jd_julianDay << std::endl;
 
 	//	Then we add the fraction of the day
-	jd_julianDayFraction = jd_julianDay + ((ts_getHour() + (ts_getMinute()/60.) + (ts_getSecond()/3600.))/24.);
+	//jd_julianDayFraction = jd_julianDay + ((ts_getHour() + (ts_getMinute()/60.) + (ts_getSecond()/3600.))/24.);
+	jd_julianDate = jd_julianDay - .5 + ((ts_getHour() + (ts_getMinute()/60.) + (ts_getSecond()/3600.))/24.);
 
 	// Calculate doy
 	short K;
@@ -72,9 +82,9 @@ void julianday::jd_calculateJulianDay(void)
 
 	//if(jd_verbose){
 		std::cout << std::fixed;
-		std::cout << "               Julian Day: " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_julianDay << std::endl;
-		std::cout << "      Julian Day Fraction: " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_julianDayFraction << std::endl;
-		std::cout << "                      doy: " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_doy << std::endl;
+		std::cout << "                  Julian Day(whole): " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_julianDay << std::endl;
+		std::cout << "              Julian Date(fraction): " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_julianDate << std::endl;
+		std::cout << "                                doy: " << std::setw(jd_FLOATWIDTH) << std::setprecision(jd_FLOATPRECISION) << std::setfill(' ') << jd_doy << std::endl;
 	//}
 
 /*

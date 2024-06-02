@@ -177,7 +177,7 @@ void getSystemDate(int &_year, short &_month, float &_day, bool _verbose)
 void getSystemTime(short &_hour, short &_minute, float &_second, bool _verbose)
 {
 	//if(_verbose)
-		std::cout << "Time not supplied, defaults to 00:00:00" << std::endl;
+		std::cout << "Time not supplied, defaults to 12:00:00, which historically is when the next julian day begins." << std::endl;
 
 	//time_t current = time(NULL);
 	//struct tm* current_s = localtime(&current);
@@ -185,7 +185,7 @@ void getSystemTime(short &_hour, short &_minute, float &_second, bool _verbose)
 	//_hour	= current_s->tm_hour;
 	//_minute	= current_s->tm_min;
 	//_second	= current_s->tm_sec;
-	_hour	= 0;
+	_hour	= 12;
 	_minute	= 0;
 	_second	= 0.;
 

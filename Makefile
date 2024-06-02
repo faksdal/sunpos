@@ -41,4 +41,4 @@ $(OBJDIR)/$(TARGET).o: $(TARGET).cpp
 	$(CXX) $(CPPFLAGS) -c -o $@ $<
 
 clean:
-	rm $(TARGET) $(OBJDIR)/*
+	rm $(BINDIR)/$(TARGET) $(OBJDIR)/*
