@@ -15,7 +15,8 @@
 #
 #	$(patsubst PATTERN,REPLACEMENT,TEXT)
 ####################################################################################################
-TARGET = jd
+BINDIR = bin
+TARGET = sp
 CXX = g++
 CPPFLAGS = -Iinc -I. -g -Wall
 
@@ -30,7 +31,7 @@ OBJFILES = $(patsubst %.cpp, $(OBJDIR)/%.o, $(notdir $(SOURCES)))
 
 
 $(TARGET): $(OBJFILES)
-	$(CXX) $(CPPFLAGS) -o $(TARGET) $(OBJFILES)
+	$(CXX) $(CPPFLAGS) -o $(BINDIR)/$(TARGET) $(OBJFILES)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp	
 	$(CXX) $(CPPFLAGS) -c -o $@ $^
