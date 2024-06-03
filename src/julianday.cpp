@@ -15,6 +15,7 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 {
 	jd_tz		= _tz;
 	jd_verbose	= _verbose;
+	std::cout << "jd_verbose: " << (int)jd_verbose << std::endl;
 
 	//
 	//	This is a fixed value used to calculate Julian century.
@@ -28,22 +29,22 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 
 	M = 0.00;
 
+	// Calculate jd
+	std::cout << "jd_verbose: " << (int)jd_verbose << std::endl;
 	jd_calculateJulianDay();
+	//*************************************************************************
+	std::cout << "jd_verbose: " << (int)jd_verbose << std::endl;
 
+	// Calculate and retreive the mean anomaly M
 	ma = new meananomaly(jd_julianDay_utc, jd_j2000, jd_verbose);
 	if(!ma){
 		std::cerr << "Error allocating memory for M = new meananomaly(jd_julianDay_utc), exiting..." << std::endl;
 		exit(-1);
 	}
-
 	M = ma->ma_getM("Earth");
-	std::cout << "Mean anomaly for Earth: " << M << std::endl;
-	/*
-	std::cout << "M->ma_getM(\"Mercury\"): " << M->ma_getM("Mercury") << std::endl;
-	std::cout << "M->ma_getM(\"Jupiter\"): " << M->ma_getM("Jupiter") << std::endl;
-	std::cout << "M->ma_getM(\"Pluto\"): " << M->ma_getM("Pluto") << std::endl;
-	*/
-
+	//if(jd_verbose)
+		std::cout << "Mean anomaly for Earth: " << M << std::endl;
+	//*************************************************************************
 
 	return;
 }
