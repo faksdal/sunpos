@@ -25,6 +25,7 @@
 //#include "timestamp.h"
 #include "julianday.h"
 
+
 void parseOptarg(char **_optarg);
 void getSystemDate(int &_year, short &_month, float &_day, bool _verbose);
 void getSystemTime(short &_hour, short &_minute, float &_second, bool _verbose);

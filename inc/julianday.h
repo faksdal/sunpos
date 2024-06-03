@@ -27,7 +27,9 @@ https://www.aa.quae.nl/en/reken/juliaansedag.html
 #include <string>
 #include <iostream>
 #include <inttypes.h>
+
 #include "timestamp.h"
+#include "meananomaly.h"
 
 
 
@@ -47,10 +49,13 @@ private:
 	int				jd_doy;
 	//uint32_t		jd_julianDay;
 	double			jd_julianDay_utc;
+	double			jd_j2000;
 
 	bool			jd_verbose;
 
 	double			jd_julianDate;
+
+	meananomaly		*M;
 
 
 
@@ -61,8 +66,13 @@ private:
 public:
 	julianday(int _year, short _month, double _day, short _hour, short _minute, double _second, short _tz, bool _verbose);
 
-	short jd_getTz(void) { return jd_tz; }
+	/*************************************************************************/
+	short jd_getTz(void)		{ return jd_tz; }
+
+	double	jd_getJ2000(void)	{ return jd_j2000; }
+
 	std::string	jd_getDOW(void)	{ return dow_name[long(jd_julianDay_utc + 1.5) % (7)]; }
+	/*************************************************************************/
 
 	void	jd_printToScreen(void);
 
