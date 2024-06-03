@@ -22,19 +22,28 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 	//
 	jd_j2000	= 2451545.0;
 
+	// Format specifiers for output
 	jd_FLOATWIDTH		= 25;
 	jd_FLOATPRECISION	= 7;
 
+	M = 0.00;
+
 	jd_calculateJulianDay();
 
-	M = new meananomaly(jd_julianDay_utc, jd_j2000, jd_verbose);
-	if(!M){
+	ma = new meananomaly(jd_julianDay_utc, jd_j2000, jd_verbose);
+	if(!ma){
 		std::cerr << "Error allocating memory for M = new meananomaly(jd_julianDay_utc), exiting..." << std::endl;
 		exit(-1);
 	}
 
-	M->ma_getM("Pluto");
-	M->ma_getM("Mercury");
+	M = ma->ma_getM("Earth");
+	std::cout << "Mean anomaly for Earth: " << M << std::endl;
+	/*
+	std::cout << "M->ma_getM(\"Mercury\"): " << M->ma_getM("Mercury") << std::endl;
+	std::cout << "M->ma_getM(\"Jupiter\"): " << M->ma_getM("Jupiter") << std::endl;
+	std::cout << "M->ma_getM(\"Pluto\"): " << M->ma_getM("Pluto") << std::endl;
+	*/
+
 
 	return;
 }

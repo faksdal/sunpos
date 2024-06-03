@@ -24,8 +24,10 @@ double meananomaly::ma_getM(std::string _planet)
 		// Compare planets in list with the one asked for by _planet
 		if(M01[i].planet == _planet){
 			retval = M01[i].M;
+			/*
 			if(ma_verbose)
 				std::cout << "Found the planet " << M01[i].planet << " with value of M " << M01[i].M << std::endl;
+			*/
 			break;
 		}
 	}

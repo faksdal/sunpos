@@ -50,12 +50,13 @@ private:
 	//uint32_t		jd_julianDay;
 	double			jd_julianDay_utc;
 	double			jd_j2000;
+	double			M;
 
 	bool			jd_verbose;
 
 	double			jd_julianDate;
 
-	meananomaly		*M;
+	meananomaly		*ma;
 
 
 
