@@ -29,13 +29,15 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 
 	M = 0.00;
 
-	// Calculate jd
+
+	// 1. Time; Calculate jd
 	std::cout << "jd_verbose: " << (int)jd_verbose << std::endl;
 	jd_calculateJulianDay();
 	//*************************************************************************
 	std::cout << "jd_verbose: " << (int)jd_verbose << std::endl;
 
-	// Calculate and retreive the mean anomaly M
+
+	// 2. The Mean anomaly; Calculate and retreive the mean anomaly M
 	ma = new meananomaly(jd_julianDay_utc, jd_j2000, jd_verbose);
 	if(!ma){
 		std::cerr << "Error allocating memory for M = new meananomaly(jd_julianDay_utc), exiting..." << std::endl;
@@ -45,6 +47,15 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 	//if(jd_verbose)
 		std::cout << "Mean anomaly for Earth: " << M << std::endl;
 	//*************************************************************************
+
+	// 3. The equation of center
+	// 4. The Perihelion and the Obliquity of the Ecliptic
+	// 5. The Ecliptical Coordinates
+	// 6. The Equatorial coordinates
+	// 7. The Observer
+	// 8. Solar Transit
+	// 9. Equation of Time
+	// 10. Sunrise and Sunset
 
 	return;
 }
