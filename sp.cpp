@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 						}
 			case 'v':	{
 							verbose	= true;
-							std::cout << "Verbose..." << (int)verbose << std::endl;
+							//std::cout << "Verbose..." << (int)verbose << std::endl;
 							break;
 						}
 			case 'd':	{

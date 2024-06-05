@@ -87,25 +87,5 @@ void julianday::jd_calculateJulianDay(void)
 	// Calculate dow
 
 
-/*
-	//
-	// Calculate the fraction of the day
-	//
-	jdnJulianDay += (((jd_hour - jdnTz) + (jdnMinute / 60.) + (jdnSecond / 3600.) ) / 24.);
-
-	//if(jdnVerbose)
-		//cout	<< "      Julian Day Number (jdn): " << setw(30) << setprecision(15) << setfill(' ') << jdnGetJdnJulianDay() << endl;
-
-	//
-	// Calculating Julian Century according to p.163 in Jean Meeus Astronomical Algorithms Second Edition published in 1998.
-	//
-	jdnJulianCentury		= ((jdnJulianDay - jdnJ2000) / 36525.);
-	jdnJulianCenturyNoon	= ((jdnJdnNoon - jdnJ2000) / 36525.);
-
-	jdnJulianMillennia		= ((jdnJulianDay - jdnJ2000) / 365250.);
-	jdnJulianMillenniaNoon	= ((jdnJdnNoon - jdnJ2000) / 365250.);
-
-	*/
-
 	return;
 }

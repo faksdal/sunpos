@@ -15,7 +15,7 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 {
 	jd_tz		= _tz;
 	jd_verbose	= _verbose;
-	std::cout << "jd_verbose: " << (int)jd_verbose << std::endl;
+
 
 	//
 	//	This is a fixed value used to calculate Julian century.
@@ -31,10 +31,10 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 
 
 	// 1. Time; Calculate jd
-	std::cout << "jd_verbose: " << (int)jd_verbose << std::endl;
+
 	jd_calculateJulianDay();
 	//*************************************************************************
-	std::cout << "jd_verbose: " << (int)jd_verbose << std::endl;
+
 
 
 	// 2. The Mean anomaly; Calculate and retreive the mean anomaly M

@@ -16,12 +16,8 @@
 
 meananomaly::meananomaly(double _jd, double _j2000, bool _verbose)
 {
-
-
-	// M		= (M0 + M1(j - j2000)) mod 360°
-
 	ma_verbose = _verbose;
-	std::cout << "ma_verbose: " << (int)ma_verbose << std::endl;
+
 
 
 	if(_verbose){
