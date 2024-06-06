@@ -196,7 +196,7 @@ void getSystemTime(short &_hour, short &_minute, float &_second, bool _verbose)
 	//_second	= current_s->tm_sec;
 	_hour	= 12;
 	_minute	= 0;
-	_second	= 0.;
+	_second	= 0.000;
 
 	//	Fixes the floating point values on print, see: https://faculty.cs.niu.edu/~hutchins/csci241/output.htm
 	//	Used in conjunction with setw() and setprecision()
