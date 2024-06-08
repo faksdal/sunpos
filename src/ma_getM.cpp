@@ -15,6 +15,7 @@
 
 
 
+// Returns the mean anomaly M for a given planet.
 double meananomaly::ma_getM(std::string _planet)
 {
 	double retval = 0.;

@@ -66,10 +66,11 @@ int main(int argc, char *argv[])
 					{"verbose",	no_argument,		NULL,	'v'},
 					{"help",	no_argument,		NULL,	'h'},
 					{"tz",		required_argument,	NULL,	1},
+					//{"dow",		no_argument,		NULL,	'd'},
 					//{"lat",		required_argument,	NULL,	2},
 					//{"lon",		required_argument,	NULL,	3},
 					//{"dst",		required_argument,	NULL,	4},
-					//{"dow",		no_argument,		NULL,	'd'},
+					//
 					{0, 0, 0, 0}
 	};	//End of getopt()-variables
 
@@ -186,21 +187,21 @@ void getSystemDate(int &_year, short &_month, float &_day, bool _verbose)
 void getSystemTime(short &_hour, short &_minute, float &_second, bool _verbose)
 {
 	//if(_verbose)
-		std::cout << "Time not supplied, defaults to 12:00:00, which historically is when the next julian day begins." << std::endl;
+		//std::cout << "Time not supplied, defaults to 12:00:00, which historically is when the next julian day begins." << std::endl;
+		std::cout << "Time not supplied, using system time." << std::endl;
 
-	//time_t current = time(NULL);
-	//struct tm* current_s = localtime(&current);
+	time_t current = time(NULL);
+	struct tm* current_s = localtime(&current);
 
-	//_hour	= current_s->tm_hour;
-	//_minute	= current_s->tm_min;
-	//_second	= current_s->tm_sec;
-	_hour	= 12;
-	_minute	= 0;
-	_second	= 0.000;
+	_hour	= current_s->tm_hour;
+	_minute	= current_s->tm_min;
+	_second	= current_s->tm_sec;
 
-	//	Fixes the floating point values on print, see: https://faculty.cs.niu.edu/~hutchins/csci241/output.htm
-	//	Used in conjunction with setw() and setprecision()
-	//cout.setf(ios::fixed);
+	//_hour	= 12;
+	//_minute	= 0;
+	//_second	= 0.000;
+
+
 	if(_verbose){
 		printTime(_hour, _minute, _second);
 	}
@@ -222,6 +223,9 @@ void printDate(int _year, short _month, float _day)
 
 void printTime(short _hour, short _minute, float _second)
 {
+	//	Fixes the floating point values on print, see: https://faculty.cs.niu.edu/~hutchins/csci241/output.htm
+	//	Used in conjunction with setw() and setprecision()
+	//std::cout.setf(std::ios::fixed);
 
 	std::cout	<< "Time: " << std::setw(2) << std::setfill('0') << _hour
 				<< ":" << std::setw(2) << std::setfill('0') << _minute
