@@ -43,6 +43,9 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 		std::cerr << "Error allocating memory for M = new meananomaly(jd_julianDay_utc), exiting..." << std::endl;
 		exit(-1);
 	}
+
+	// For the example at https://www.aa.quae.nl/en/reken/zonpositie.html
+	// the date is 2004/04/1 at 12:00:00
 	M = ma->ma_getM("Earth");
 	//if(jd_verbose)
 		std::cout << "Mean anomaly for Earth: " << M << std::endl;

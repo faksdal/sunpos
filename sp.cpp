@@ -130,8 +130,8 @@ int main(int argc, char *argv[])
 		} // switch(c)
 	} // while((c = getopt_long(argc, argv, shortOptions, longOptions, &optionIndex)) != -1)
 
-	dateSupplied ? printDate(year, month, day) : getSystemDate(year, month, day, verbose);
-	timeSupplied ? printTime(hour, minute, second) : getSystemTime(hour, minute, second, verbose);
+	dateSupplied ? printDate(year, month, day)		: getSystemDate(year, month, day, verbose);
+	timeSupplied ? printTime(hour, minute, second)	: getSystemTime(hour, minute, second, verbose);
 
 	//timestamp *ts = new timestamp(year, month, day, hour, minute, second, verbose);
 
