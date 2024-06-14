@@ -30,6 +30,7 @@ https://www.aa.quae.nl/en/reken/juliaansedag.html
 
 #include "timestamp.h"
 #include "meananomaly.h"
+#include "equationofcentre.h"
 
 
 
@@ -37,6 +38,23 @@ https://www.aa.quae.nl/en/reken/juliaansedag.html
 class julianday : public timestamp{
 
 private:
+
+	struct Π_ω_table{
+		std::string	planet;
+		double		Π,ω;
+	};
+
+	Π_ω_table	Π_ω[NUMBEROFPLANETS] =	{	"Mercury",		230.3265,	0.0351,
+											"Venus",		73.7576,	226376,
+											"Earth",		102.9373,	23.4393,
+											"Mars",			71.0041,	25.1918,
+											"Jupiter",		237.1015,	3.1189,
+											"Saturn",		99.4587,	26.7285,
+											"Uranus",		5.4634,		82.2298,
+											"Neptune",		182.2100,	27.8477,
+											"Pluto",		184.5484,	119.6075 };
+	double Π_Earth;
+	double ω_Earth;
 
 	std::string	dow_name[7] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
@@ -63,11 +81,17 @@ private:
 
 	double			jd_julianDay_utc;
 	double			jd_j2000;
-	double			M;
+
+	double			M;						// The calculated mean anomaly
+	double			C;						// The calculated equation of centre
+	double			L;						// The calculated mean longitude
+	double			λ;						// The calculated ecliptical longitude lambda λ
+	double			v;						// The calculated true anomaly v (nu)
 
 	bool			jd_verbose;
 
-	meananomaly		*ma;
+	meananomaly			*ma;
+	equationofcentre	*eoc;
 
 
 

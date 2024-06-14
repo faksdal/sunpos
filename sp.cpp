@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
 
 	julianday *jd = new julianday(year, month, day, hour, minute, second, tz, verbose);
 
-	jd->jd_printToScreen();
+	//jd->jd_printToScreen();
 
 	if(jd)
 		delete jd;

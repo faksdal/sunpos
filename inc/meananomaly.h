@@ -48,7 +48,9 @@
 
 #include <string>
 
+#ifndef NUMBEROFPLANETS
 #define	NUMBEROFPLANETS	9
+#endif
 
 
 
