@@ -100,6 +100,9 @@ julianday::julianday(int _year, short _month, double _day, short _hour, short _m
 
 	//*************************************************************************
 	// 6. The Equatorial coordinates
+
+
+
 	//*************************************************************************
 
 
