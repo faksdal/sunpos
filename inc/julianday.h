@@ -54,7 +54,7 @@ private:
 											"Neptune",		182.2100,	27.8477,
 											"Pluto",		184.5484,	119.6075 };
 	double Π_Earth;
-	double ω_Earth;
+	double ε_Earth;
 
 	std::string	dow_name[7] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
@@ -87,6 +87,14 @@ private:
 	double			L;						// The calculated mean longitude
 	double			λ;						// The calculated ecliptical longitude lambda λ
 	double			v;						// The calculated true anomaly v (nu)
+	double			α;						// Right ascension, alpha
+	double			δ;						// Declination, delta
+	double			φ;						// latitude phi of the observer
+	double			lw;						// longitude west of the observer
+	double			Θ;						// sideral time theta
+	double			H;						// Hour angle
+	double			A;						// Azimuth
+	double			h;						// Altitude
 
 	bool			jd_verbose;
 
@@ -98,6 +106,13 @@ private:
 	void	jd_calculateJulianDay(void);
 
 	std::string	jd_getDaySuffix(void);
+
+	//***********************************************************************************
+	//	Private, inline functions to calculate back and forth between radians and degrees
+	//
+	double	RADIANS(double _degrees) { return (_degrees * M_PI / 180.); }
+	double	DEGREES(double _radians) { return (_radians * 180. / M_PI); }
+	//***********************************************************************************
 
 public:
 	julianday(int _year, short _month, double _day, short _hour, short _minute, double _second, short _tz, bool _verbose);

@@ -65,7 +65,7 @@ void julianday::jd_calculateJulianDay(void)
 	//	We calculate first the value for JD at noon
 	//std::cout << "jd_julianDay: " << jd_julianDay << std::endl;
 	//std::cout << "(short)ts_getDay(): " << (short)ts_getDay() << std::endl;
-	jd_julianDayNumber	=		floor(365.25 * (Y + 4716.))
+	jd_julianDayNumber	=	floor(365.25 * (Y + 4716.))
 						+	floor(30.6001 * (M + 1.))
 						+	(short)ts_getDay() + B - 1524;
 	//std::cout << "jd_julianDay: " << jd_julianDay << std::endl;
